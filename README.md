@@ -2,7 +2,7 @@
 
 > **Note: This is currently a UI mockup / prototype.** The frontend is built with real code and a working recommendation engine, but all data is mocked. The full backend (ASP.NET Core + PostgreSQL) is under active development.
 >
-> GameDevPrototype.png
+> ![GameDNA Dashboard](assets/GameDevPrototype.png)
 
 GameDNA is a game recommendation platform that helps players discover new games based on the games they actually enjoy and complete. Rather than surfacing whatever is trending or sponsored, GameDNA analyzes your real play history — your completion patterns, playtime, achievements, favorite genres, and preferred developers — to build a personalized "Gaming DNA" profile and generate recommendations that actually fit you.
 
