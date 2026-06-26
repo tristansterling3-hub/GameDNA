@@ -1,32 +1,111 @@
-# React + TypeScript + Vite
+# GameDNA 🎮
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> **Note: This is currently a UI mockup / prototype.** The frontend is built with real code and a working recommendation engine, but all data is mocked. The full backend (ASP.NET Core + PostgreSQL) is under active development.
 
-Currently, two official plugins are available:
+GameDNA is a game recommendation platform that helps players discover new games based on the games they actually enjoy and complete. Rather than surfacing whatever is trending or sponsored, GameDNA analyzes your real play history — your completion patterns, playtime, achievements, favorite genres, and preferred developers — to build a personalized "Gaming DNA" profile and generate recommendations that actually fit you.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Goals
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Personalized discovery** — recommend games based on what you've played and finished, not just what's popular
+- **Gaming DNA profile** — visualize your taste as a player: favorite genres, tags, developers, completion rate, average playtime
+- **Steam integration** — connect your Steam account to sync your library automatically (planned)
+- **Sales recommendations** — surface games on sale that match your profile, scored by both fit and discount value
+- **Built to grow** — architecture designed to support additional platforms (Xbox, PSN, Epic) and an AI-powered recommendation engine in the future
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Current Status
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+This repository currently contains a **frontend prototype** built to validate the UI, user flows, and recommendation logic before the full backend is implemented.
+
+| Feature | Status |
+|---|---|
+| Dashboard | ✅ Mockup complete |
+| My Library (add/filter/update games) | ✅ Mockup complete |
+| Recommendations engine | ✅ Working (mock data) |
+| Sales recommendations | ✅ Working (mock data) |
+| Gaming DNA radar profile | ✅ Working (mock data) |
+| ASP.NET Core backend | 🔧 In progress |
+| PostgreSQL database + EF Core | 🔧 In progress |
+| Steam OAuth + sync | 📋 Planned |
+| Real user authentication (JWT) | 📋 Planned |
+| Live game metadata | 📋 Planned |
+
+---
+
+## Tech Stack
+
+### Frontend (current prototype)
+- [React](https://react.dev/) — UI framework
+- [Vite](https://vitejs.dev/) — build tool and dev server
+- TypeScript — type safety
+
+### Planned backend
+- ASP.NET Core (.NET 9) — REST API
+- C# — backend language
+- PostgreSQL — database
+- Entity Framework Core — ORM and migrations
+- JWT — authentication
+- Steam Web API — game library sync
+
+---
+
+## Recommendation Engine
+
+The prototype includes a working scoring algorithm that weights:
+
+| Factor | Weight |
+|---|---|
+| Genre match | 40% |
+| Gameplay tag match | 30% |
+| Developer match | 15% |
+| Completion pattern match | 10% |
+| Popularity score | 5% |
+
+Sales recommendations blend **80% recommendation match** with **20% discount value**.
+
+---
+
+## Running the Prototype
+
+```bash
+# Clone the repo
+git clone https://github.com/your-username/gamedna.git
+cd gamedna
+
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Then open `http://localhost:5173` in your browser.
+
+No backend or database required — everything runs on mock data in the browser.
+
+---
+
+## Project Structure (planned full build)
+
+```
+GameDNA/
+├── src/
+│   └── GameDNA.Api/          # ASP.NET Core Web API
+│       ├── Models/           # EF Core entities
+│       ├── Controllers/      # REST endpoints
+│       ├── Services/         # Recommendation, Steam sync, Sales
+│       ├── DTOs/             # Request/response shapes
+│       └── Data/             # DbContext and migrations
+├── frontend/                 # React + Vite frontend
+├── docker-compose.yml        # Docker setup (planned)
+└── README.md
+```
+
+---
+
+## License
+
+MIT
